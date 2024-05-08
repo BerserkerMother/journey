@@ -31,7 +31,8 @@ jobs:
       - run: npm install
       - run: pwd
       - run: npm run build
-        working-directory: ./src
+        working-directory: .
+      - run: ls -la
 
   deploy:
     runs-on: ubuntu-latest

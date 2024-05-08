@@ -37,7 +37,11 @@ jobs:
       - name: Run gen_blog_list script
         run: bash ./gen_blog_list.sh
       - name: Install Vue CLI
+      - uses: actions/setup-node@master#7
+      - name: Step up vue cli
         run: npm install -g @vue/cli
+      - name: Install deps
+        run: npm install
       - name: Build with npm
         run: npm run build
         working-directory: .

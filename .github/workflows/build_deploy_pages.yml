@@ -36,6 +36,8 @@ jobs:
           cp -rf blogs/* public/blog
       - name: Run gen_blog_list script
         run: bash ./gen_blog_list.sh
+      - name: Install Vue CLI
+        run: npm install -g @vue/cli
       - name: Build with npm
         run: npm run build
         working-directory: .

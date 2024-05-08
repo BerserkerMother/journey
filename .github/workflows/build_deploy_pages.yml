@@ -29,7 +29,7 @@ jobs:
         run: bash ./gen_blog_list.sh
       - uses: actions/setup-node@master
       - run: npm install
-      - run: npm install -g @vue/cli
+      - run: pwd
       - run: npm run build
         working-directory: ./src
 

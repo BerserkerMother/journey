@@ -1,0 +1,19 @@
+{
+  "name": "markdown_to_html",
+  "collaborators": [
+    "Kave Bahraman <sadegh.b218@gmail.com>"
+  ],
+  "version": "0.1.0",
+  "files": [
+    "markdown_to_html_bg.wasm",
+    "markdown_to_html.js",
+    "markdown_to_html_bg.js",
+    "markdown_to_html.d.ts"
+  ],
+  "module": "markdown_to_html.js",
+  "types": "markdown_to_html.d.ts",
+  "sideEffects": [
+    "./markdown_to_html.js",
+    "./snippets/*"
+  ]
+}

@@ -30,7 +30,7 @@ jobs:
       - uses: actions/setup-node@master
       - run: npm install
       - run: npm run build
-        working-directory: .
+        working-directory: ./src
 
   deploy:
     runs-on: ubuntu-latest

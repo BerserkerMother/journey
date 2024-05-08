@@ -15,15 +15,16 @@ if [ ${#files[@]} -eq 0 ]; then
     exit 1
 fi
 
-# Create the JSON array
-json='['
+# Create an empty array to store file names without directory paths
+file_names=()
+
+# Extract file names without directory paths using basename
 for file in "${files[@]}"; do
-    # Append each file to the JSON array
-    json+="\"$file\","
+    file_names+=("$(basename "$file")")
 done
-# Remove the trailing comma
-json="${json%,}"
-json+=']'
+
+# Convert the array of file names to JSON format
+json=$(printf '%s\n' "${file_names[@]}" | jq -R . | jq -s .)
 
 # Write the JSON array to the output file
 echo "$json" > "$output_json"

@@ -24,7 +24,7 @@ jobs:
       - name: Copy blogs to public/blog
         run: |
           mkdir -p public/blog
-          cp -rf blogs/* public/blog
+          cp -rf blogs/* public/blogs
       - name: Run gen_blog_list script
         run: bash ./gen_blog_list.sh
       - uses: actions/setup-node@master

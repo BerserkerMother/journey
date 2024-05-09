@@ -35,12 +35,14 @@ export default {
 
         for (const file of files) {
           const filePath = `${baseBlogPath}/${file}`;
+          console.log(filePath);
           const fileResponse = await fetch(filePath);
           const fileContent = await fileResponse.text();
           const lines = fileContent.split('\n');
           const title = lines[2]; // Use file name as title
-          const id = file; // Use file path as ID
+          const id = filePath; // Use file path as ID
           const content = lines.slice(10, 15).join('\n'); // Get first 4 lines of content
+          console.log(content);
 
           const post = {
             id: id,

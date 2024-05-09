@@ -25,8 +25,8 @@ export default {
 
         const loadMarkdownContent = () => {
             // Fetch the Markdown file
-            const mdFilePath = `../blogs/${props.postId}`;
-            fetch(mdFilePath)
+            // const mdFilePath = `../blogs/${props.postId}`;
+            fetch(props.postId)
                 .then(response => response.text())
                 .then(data => {
                     loadBlogPost(data);

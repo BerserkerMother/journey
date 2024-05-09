@@ -21,12 +21,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2 # Updated version of the action
-      - name: Copy blogs to public/blog
-        run: |
-          mkdir -p public/blog
-          cp -rf blogs/* public/blogs
-      - name: Run gen_blog_list script
-        run: bash ./gen_blog_list.sh
       - uses: actions/setup-node@master
       - run: npm install
       - run: pwd

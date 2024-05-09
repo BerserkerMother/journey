@@ -1,11 +1,15 @@
-<!-- BlogPostDetail.vue -->
 <template>
-    <div class="blog-post-detail" :innerHTML="htmlContent"></div>
+    <div class="blog-post-detail" ref="contentContainer"></div>
 </template>
 
 <script>
 import { parse } from "markdown_to_html";
 import { ref, onMounted, watch } from "vue";
+import "prismjs/themes/prism-tomorrow.css"; // Import Prism.js CSS
+import Prism from "prismjs"; // Import Prism.js
+import 'prismjs/components/prism-python'; // Import Python language support
+import 'prismjs/components/prism-bash'; // Import Python language support
+// Import other language components as needed
 
 export default {
     name: 'BlogPostDetail',
@@ -16,16 +20,9 @@ export default {
         }
     },
     setup(props) {
-        const htmlContent = ref('');
-
-        // Load the markdown content when the postId changes
-        watch(() => props.postId, () => {
-            loadMarkdownContent();
-        });
+        const contentContainer = ref(null);
 
         const loadMarkdownContent = () => {
-            // Fetch the Markdown file
-            // const mdFilePath = `../blogs/${props.postId}`;
             fetch(props.postId)
                 .then(response => response.text())
                 .then(data => {
@@ -37,9 +34,15 @@ export default {
         };
 
         const loadBlogPost = (content) => {
-            htmlContent.value = parse(content);
-            // console.log('Processed Markdown content:', htmlContent.value);
+            contentContainer.value.innerHTML = parse(content);
+            // Highlight code blocks with Prism.js
+            Prism.highlightAllUnder(contentContainer.value);
         };
+
+        // Load the markdown content when the postId changes
+        watch(() => props.postId, () => {
+            loadMarkdownContent();
+        });
 
         // Load the markdown content when the component is mounted
         onMounted(() => {
@@ -47,14 +50,15 @@ export default {
         });
 
         return {
-            htmlContent
+            contentContainer
             // Other variables returned from setup
         };
     }
 }
 </script>
+<style scoped>
+/* @import './assets/prism.css'; */
 
-<style>
 .blog-post-detail {
     max-width: 800px;
     /* Set a maximum width for the content */
@@ -87,23 +91,6 @@ a:hover {
     /* Add underline on hover for links */
 }
 
-pre {
-    background-color: #292929;
-    /* Set background color for code blocks */
-    border: 1px solid #dee2e6;
-    /* Add a border around code blocks */
-    padding: 15px;
-    /* Add padding inside code blocks */
-    overflow-x: auto;
-    /* Add horizontal scroll for overflow */
-    font-size: 14px;
-    /* Decrease font size for code blocks */
-}
-
-code {
-    font-family: Consolas, monospace;
-    /* Change code font family */
-}
 
 @media (max-width: 768px) {
     .blog-post-detail {

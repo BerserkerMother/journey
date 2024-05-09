@@ -67,7 +67,7 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
 /* Grid container styles */
 .container {
   max-width: 800px;

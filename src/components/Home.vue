@@ -39,9 +39,9 @@ export default {
           const fileResponse = await fetch(filePath);
           const fileContent = await fileResponse.text();
           const lines = fileContent.split('\n');
-          const title = lines[2]; // Use file name as title
+          const title = lines[0]; // Use file name as title
           const id = filePath; // Use file path as ID
-          const content = lines.slice(10, 15).join('\n'); // Get first 4 lines of content
+          const content = lines.slice(1, 15).join('\n'); // Get first 4 lines of content
           console.log(content);
 
           const post = {
@@ -67,7 +67,7 @@ export default {
 </script>
 
 
-<style scoped>
+<style scope>
 /* Grid container styles */
 .container {
   max-width: 800px;

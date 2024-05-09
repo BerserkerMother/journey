@@ -27,14 +27,14 @@ export default {
   },
   methods: {
     async fetchBlogPosts() {
-      const blogFolder = '../list.json'; // Path to the blogs folder
-
+      const blogNames = 'https://raw.githubusercontent.com/BerserkerMother/blogs/main/list.json'; // Path to the blogs folder
+      const baseBlogPath = 'https://raw.githubusercontent.com/BerserkerMother/blogs/main/';
       try {
-        const response = await fetch(blogFolder);
+        const response = await fetch(blogNames);
         const files = await response.json(); // Assuming blogs folder returns JSON with file names
 
         for (const file of files) {
-          const filePath = `../blogs/${file}`;
+          const filePath = `${baseBlogPath}/${file}`;
           const fileResponse = await fetch(filePath);
           const fileContent = await fileResponse.text();
           const lines = fileContent.split('\n');
